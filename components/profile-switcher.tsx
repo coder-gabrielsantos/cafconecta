@@ -26,9 +26,9 @@ export function ProfileSwitcher({ onChange }: { onChange?: () => void }) {
 
   return (
     <Select value={profile} onValueChange={changeProfile}>
-      <SelectTrigger aria-label="Alternar perfil de acesso" className="h-11 w-[184px] border-0 px-1 shadow-none sm:w-[238px]">
-        <span className="grid size-9 shrink-0 place-items-center rounded-full bg-blue-700 text-xs font-semibold text-white">{current.initials}</span>
-        <span className="min-w-0 flex-1 text-left leading-tight"><span className="block truncate text-sm font-semibold text-slate-900">{current.person}</span><span className="block truncate text-[11px] text-slate-500">{current.label}</span></span>
+      <SelectTrigger aria-label="Alternar perfil de acesso" className="h-10 w-[174px] border-0 px-1 shadow-none hover:bg-slate-50 sm:w-[224px]">
+        <span className="grid size-8 shrink-0 place-items-center rounded-full bg-[#173b74] text-[10px] font-semibold text-white">{current.initials}</span>
+        <span className="min-w-0 flex-1 text-left leading-tight"><span className="block truncate text-[13px] font-semibold text-slate-800">{current.person}</span><span className="block truncate text-[10px] text-slate-500">{current.label}</span></span>
         <SelectValue className="sr-only" />
       </SelectTrigger>
       <SelectContent align="end" alignItemWithTrigger={false} className="w-72 p-2">

@@ -22,7 +22,7 @@ export default function SystemAdminDashboard() {
   const [minimumStock, setMinimumStock] = useState(20);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-7">
       <PageHeader eyebrow="Administração do sistema" title="Painel técnico" description="Gerencie acessos administrativos, monitore eventos e ajuste parâmetros globais." actions={
         <Dialog><DialogTrigger render={<Button size="lg" />}><Plus />Convidar administrador</DialogTrigger><DialogContent className="sm:max-w-lg"><DialogHeader><DialogTitle>Convidar administrador</DialogTitle><DialogDescription>O convite será válido por 72 horas e permitirá a criação de uma senha pessoal.</DialogDescription></DialogHeader><div className="grid gap-4"><div className="space-y-2"><Label htmlFor="invite-name">Nome completo</Label><Input id="invite-name" placeholder="Nome do administrador" /></div><div className="space-y-2"><Label htmlFor="invite-email">E-mail institucional</Label><Input id="invite-email" type="email" placeholder="nome@coelhoneto.ma.gov.br" /></div><div className="space-y-2"><Label>Perfil de acesso</Label><Select defaultValue="ADMIN_CAF"><SelectTrigger className="w-full"><SelectValue /></SelectTrigger><SelectContent><SelectItem value="ADMIN_CAF">Administrador CAF</SelectItem><SelectItem value="VISUALIZADOR">Visualizador</SelectItem></SelectContent></Select></div></div><DialogFooter><DialogClose render={<Button variant="outline" />}>Cancelar</DialogClose><DialogClose render={<Button onClick={() => setFeedback('Convite gerado e pronto para envio. Validade: 72 horas.')} />}>Gerar convite</DialogClose></DialogFooter></DialogContent></Dialog>
       } />
@@ -35,8 +35,8 @@ export default function SystemAdminDashboard() {
         <KPICard label="Alertas técnicos" value="1" note="Sem impacto na operação" icon={CircleAlert} tone="amber" />
       </section>
 
-      <Tabs defaultValue="users" className="gap-4">
-        <TabsList className="h-auto w-full justify-start overflow-x-auto rounded-xl border bg-white p-1 sm:w-fit">
+      <Tabs defaultValue="users" className="gap-5">
+        <TabsList variant="line" className="h-auto w-full justify-start overflow-x-auto border-b border-slate-200 bg-transparent p-0 sm:w-fit">
           <TabsTrigger value="users" className="h-9 px-4">Usuários</TabsTrigger><TabsTrigger value="logs" className="h-9 px-4">Logs técnicos</TabsTrigger><TabsTrigger value="settings" className="h-9 px-4">Configurações</TabsTrigger>
         </TabsList>
 

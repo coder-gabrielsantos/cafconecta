@@ -6,18 +6,18 @@ export function KPICard({ label, value, note, icon: Icon, tone = 'blue' }: {
   label: string; value: string; note: string; icon: LucideIcon; tone?: 'blue' | 'green' | 'amber' | 'red';
 }) {
   const tones = {
-    blue: 'bg-blue-50 text-blue-700', green: 'bg-emerald-50 text-emerald-700',
+    blue: 'bg-slate-100 text-[#173b74]', green: 'bg-emerald-50 text-emerald-700',
     amber: 'bg-amber-50 text-amber-700', red: 'bg-red-50 text-red-700',
   };
   return (
-    <Card className="min-w-0 border-0 shadow-[0_1px_2px_rgb(15_23_42/5%),0_8px_24px_rgb(15_23_42/4%)] ring-1 ring-slate-200/90">
-      <CardContent className="flex items-start justify-between gap-3 px-5 py-1">
+    <Card className="min-w-0 border-slate-200/80 shadow-none ring-0">
+      <CardContent className="flex items-start justify-between gap-4 px-5 py-0.5">
         <div className="min-w-0">
-          <p className="text-xs font-medium text-muted-foreground">{label}</p>
-          <p className="mt-2 text-2xl font-semibold tracking-tight text-slate-950">{value}</p>
-          <p className={cn('mt-2 text-xs font-medium', tone === 'red' ? 'text-red-600' : tone === 'amber' ? 'text-amber-700' : 'text-emerald-600')}>{note}</p>
+          <p className="text-[12px] font-medium text-slate-500">{label}</p>
+          <p className="mt-2 text-[26px] font-semibold leading-none tracking-[-0.035em] text-slate-950">{value}</p>
+          <p className={cn('mt-2.5 text-[11px] leading-snug', tone === 'red' ? 'text-red-600' : tone === 'amber' ? 'text-amber-700' : tone === 'green' ? 'text-emerald-600' : 'text-slate-500')}>{note}</p>
         </div>
-        <span className={cn('grid size-11 shrink-0 place-items-center rounded-xl', tones[tone])}><Icon className="size-5" /></span>
+        <span className={cn('grid size-9 shrink-0 place-items-center rounded-lg', tones[tone])}><Icon className="size-[17px]" /></span>
       </CardContent>
     </Card>
   );

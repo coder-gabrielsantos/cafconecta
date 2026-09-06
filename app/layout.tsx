@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
-import { Geist } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import { AppShell } from '@/components/app-shell';
 import { ProfileProvider } from '@/components/profile-context';
 import './globals.css';
 
-const geist = Geist({
-  variable: '--font-geist-sans',
+const inter = Inter({
+  variable: '--font-inter',
   subsets: ['latin'],
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -39,7 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${geist.variable} antialiased`}>
+      <body className={`${inter.variable} antialiased`}>
         <ProfileProvider>
           <AppShell>{children}</AppShell>
         </ProfileProvider>
