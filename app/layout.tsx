@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Nunito } from 'next/font/google';
 import { AppShell } from '@/components/app-shell';
 import { ProfileProvider } from '@/components/profile-context';
 import './globals.css';
 
-const inter = Inter({
-  variable: '--font-inter',
+const nunito = Nunito({
+  variable: '--font-nunito',
   subsets: ['latin'],
   display: 'swap',
 });
@@ -40,7 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${inter.variable} antialiased`}>
+      <body className={`${nunito.variable} antialiased`}>
         <ProfileProvider>
           <AppShell>{children}</AppShell>
         </ProfileProvider>
