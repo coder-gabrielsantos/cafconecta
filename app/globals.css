@@ -112,7 +112,19 @@
 @layer base {
   * { @apply border-border outline-ring/50; }
   html { @apply font-sans; }
-  body { @apply bg-background text-foreground; letter-spacing: -0.008em; }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-nunito), 'Nunito', sans-serif;
+    letter-spacing: -0.008em;
+  }
+  body *,
+  body *::before,
+  body *::after {
+    font-family: var(--font-nunito), 'Nunito', sans-serif !important;
+  }
+  svg text {
+    font-family: var(--font-nunito), 'Nunito', sans-serif !important;
+  }
   button, a, input, select, textarea { @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2; }
 }
 
