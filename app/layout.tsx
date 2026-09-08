@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import { Plus_Jakarta_Sans } from 'next/font/google';
+import { Manrope } from 'next/font/google';
 import { AppShell } from '@/components/app-shell';
 import { ProfileProvider } from '@/components/profile-context';
 import './globals.css';
 
-const jakarta = Plus_Jakarta_Sans({
-  variable: '--font-jakarta',
+const manrope = Manrope({
+  variable: '--font-manrope',
   subsets: ['latin'],
   weight: ['400', '500'],
   display: 'swap',
@@ -48,7 +48,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${jakarta.variable} antialiased`}>
+      <body className={`${manrope.variable} antialiased`}>
         <ProfileProvider>
           <AppShell>{children}</AppShell>
         </ProfileProvider>
