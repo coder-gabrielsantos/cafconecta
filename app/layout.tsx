@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
-import { Nunito } from 'next/font/google';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 import { AppShell } from '@/components/app-shell';
 import { ProfileProvider } from '@/components/profile-context';
 import './globals.css';
 
-const nunito = Nunito({
-  variable: '--font-nunito',
+const jakarta = Plus_Jakarta_Sans({
+  variable: '--font-jakarta',
   subsets: ['latin'],
+  weight: ['400', '500'],
   display: 'swap',
 });
 
@@ -21,7 +22,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'CAF Conecta',
     description: 'Gestão farmacêutica municipal integrada',
-    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'CAF Conecta — gestão farmacêutica municipal integrada' }],
+    images: [
+      {
+        url: '/og.png',
+        width: 1200,
+        height: 630,
+        alt: 'CAF Conecta — gestão farmacêutica municipal integrada',
+      },
+    ],
     locale: 'pt_BR',
     type: 'website',
   },
@@ -40,7 +48,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${nunito.variable} antialiased`}>
+      <body className={`${jakarta.variable} antialiased`}>
         <ProfileProvider>
           <AppShell>{children}</AppShell>
         </ProfileProvider>
