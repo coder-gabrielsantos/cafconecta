@@ -69,7 +69,7 @@
   --chart-3: #13deb9;
   --chart-4: #ffae1f;
   --chart-5: #fa896b;
-  --radius: 0.875rem;
+  --radius: 0.5rem;
   --sidebar: #ffffff;
   --sidebar-foreground: #5a6a85;
   --sidebar-primary: #5d87ff;
@@ -252,7 +252,7 @@
   .responsive-table tr {
     margin-bottom: 0.75rem;
     border: 1px solid var(--border) !important;
-    border-radius: 0.875rem;
+    border-radius: 0.5rem;
     padding: 0.6rem 0.85rem;
     background: white;
   }

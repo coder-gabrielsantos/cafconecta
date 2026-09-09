@@ -9,17 +9,14 @@ import {
   Building2,
   ClipboardClock,
   ClipboardList,
-  FileBarChart,
   History,
   LayoutDashboard,
   Menu,
   PackagePlus,
   Pill,
-  ScrollText,
   Search,
   SlidersHorizontal,
   UserRoundCog,
-  Users,
   X,
 } from 'lucide-react';
 import { useState } from 'react';
@@ -37,7 +34,6 @@ const menuGroups = {
         ['Visão geral', '/caf', LayoutDashboard],
         ['Solicitações', '/caf/solicitacoes', ClipboardList],
         ['Estoque central', '/caf/estoque', Boxes],
-        ['Estoque das UBS', '/caf/estoque/ubs/ubs-centro', Building2],
       ],
     },
     {
@@ -45,14 +41,6 @@ const menuGroups = {
       items: [
         ['Medicamentos', '/caf/medicamentos', Pill],
         ['Unidades', '/caf/unidades', Building2],
-      ],
-    },
-    {
-      label: 'GESTÃO',
-      items: [
-        ['Usuários', '/caf/usuarios', Users],
-        ['Relatórios', '/caf/relatorios', FileBarChart],
-        ['Auditoria', '/caf/auditoria', ScrollText],
       ],
     },
   ],
@@ -92,14 +80,16 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const flatItems = groups.flatMap((group) =>
     group.items.map((item) => ({ group: group.label, item })),
   );
-  const activeEntry =
-    flatItems
-      .filter(
-        ({ item: [, href] }) =>
-          pathname === href || pathname.startsWith(`${href}/`),
-      )
-      .sort((a, b) => b.item[1].length - a.item[1].length)[0] ?? flatItems[0];
-  const activeHref = activeEntry.item[1];
+  const isUnitInventory = pathname.startsWith('/caf/estoque/ubs/');
+  const activeEntry = isUnitInventory
+    ? undefined
+    : flatItems
+        .filter(
+          ({ item: [, href] }) =>
+            pathname === href || pathname.startsWith(`${href}/`),
+        )
+        .sort((a, b) => b.item[1].length - a.item[1].length)[0];
+  const activeHref = activeEntry?.item[1];
   const searchResults =
     search.trim().length > 1
       ? flatItems

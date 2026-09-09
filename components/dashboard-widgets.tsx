@@ -22,7 +22,7 @@ export function DashboardHero({
 }) {
   return (
     <section
-      className="relative min-h-[220px] overflow-hidden rounded-[15px] bg-[#ecf2ff] px-6 py-7 sm:px-8"
+      className="relative min-h-[220px] overflow-hidden rounded-[10px] bg-[#ecf2ff] px-6 py-7 sm:px-8"
       aria-labelledby="dashboard-welcome"
     >
       <div className="relative z-10 max-w-[58%] sm:max-w-[62%] lg:max-w-[54%]">
@@ -54,7 +54,7 @@ export function DashboardHero({
 
       <div className="absolute -bottom-7 -right-8 size-48 rounded-full bg-[#dbe7ff] sm:right-2 sm:size-56" />
       <div className="absolute bottom-0 right-1 grid h-[190px] w-[43%] place-items-center sm:right-5 sm:w-[38%]">
-        <div className="relative grid size-24 place-items-center rounded-[26px] bg-[#5d87ff] text-white shadow-[0_18px_45px_rgb(93_135_255/0.3)] sm:size-28">
+        <div className="relative grid size-24 place-items-center rounded-[12px] bg-[#5d87ff] text-white shadow-[0_18px_45px_rgb(93_135_255/0.3)] sm:size-28">
           <Icon className="size-11 sm:size-12" strokeWidth={1.65} />
           <span className="absolute -right-3 -top-3 grid size-9 place-items-center rounded-xl bg-white text-[#13b99a] shadow-lg">
             <CheckCircle2 className="size-[18px]" />

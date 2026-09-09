@@ -164,7 +164,7 @@ export default function ReceivingPage() {
             </CardContent>
           </Card>
 
-          <div className="rounded-[14px] border border-[#cbd9ff] bg-[#ecf2ff] p-4">
+          <div className="rounded-[10px] border border-[#cbd9ff] bg-[#ecf2ff] p-4">
             <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
               <div>
                 <p className="font-semibold text-[#2a3547]">

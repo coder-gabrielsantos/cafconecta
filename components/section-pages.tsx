@@ -3,11 +3,11 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import {
+  ArrowLeft,
   Building2,
   CheckCircle2,
   Download,
   FileBarChart,
-  Filter,
   PackagePlus,
   Pill,
   Plus,
@@ -23,6 +23,7 @@ import {
 import { DataTable } from '@/components/data-table';
 import { PageHeader } from '@/components/page-header';
 import { StatusBadge } from '@/components/status-badge';
+import { TableSelect } from '@/components/table-select';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
@@ -38,14 +39,15 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+
+const requestStatusOptions = [
+  { value: 'all', label: 'Todos os status' },
+  { value: 'Pendente', label: 'Pendentes' },
+  { value: 'Em análise', label: 'Em análise' },
+  { value: 'Aprovada', label: 'Aprovadas' },
+  { value: 'Recusada', label: 'Recusadas' },
+];
 
 export function CafRequestsPage() {
   const [filter, setFilter] = useState('all');
@@ -67,29 +69,19 @@ export function CafRequestsPage() {
         }
       />
       <Card>
-        <CardHeader className="flex-col gap-3 border-b border-[#edf1f6] pb-5 sm:flex-row sm:items-center sm:justify-between">
+        <CardHeader className="flex flex-col gap-4 border-b border-[#edf1f6] pb-5 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <CardTitle className="text-[16px]">Fila de solicitações</CardTitle>
             <p className="mt-1 text-[11px] text-[#7c8fac]">
               {visible.length} registros encontrados
             </p>
           </div>
-          <Select
+          <TableSelect
+            ariaLabel="Filtrar solicitações por status"
+            options={requestStatusOptions}
             value={filter}
-            onValueChange={(value) => value && setFilter(value)}
-          >
-            <SelectTrigger className="w-full sm:w-48">
-              <Filter />
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">Todos os status</SelectItem>
-              <SelectItem value="Pendente">Pendentes</SelectItem>
-              <SelectItem value="Em análise">Em análise</SelectItem>
-              <SelectItem value="Aprovada">Aprovadas</SelectItem>
-              <SelectItem value="Recusada">Recusadas</SelectItem>
-            </SelectContent>
-          </Select>
+            onChange={setFilter}
+          />
         </CardHeader>
         <CardContent className="px-0">
           <DataTable
@@ -184,27 +176,45 @@ export function InventoryPage({
   unitName?: string;
 }) {
   const [query, setQuery] = useState('');
+  const isUnitStock = local || Boolean(unitName);
   const visible = medications.filter((medicine) =>
     medicine.name.toLowerCase().includes(query.toLowerCase()),
   );
   return (
     <div className="space-y-6">
+      {unitName && (
+        <Link
+          href="/caf/unidades"
+          className="inline-flex items-center gap-2 text-[14px] text-[#7c8fac] transition-colors hover:text-[#5d87ff]"
+        >
+          <ArrowLeft className="size-4" />
+          Voltar para unidades
+        </Link>
+      )}
       <PageHeader
         eyebrow={
           local
             ? 'UBS Dr. Fernando Couto'
             : unitName
-              ? 'Estoque por UBS'
-              : 'Central de Abastecimento'
+              ? 'Estoque da unidade'
+              : 'Central de Abastecimento Farmacêutico'
         }
-        title={unitName ? unitName : local ? 'Meu estoque' : 'Estoque central'}
+        title={
+          unitName
+            ? `Estoque da ${unitName}`
+            : local
+              ? 'Estoque da minha UBS'
+              : 'Estoque da CAF'
+        }
         description={
           local
-            ? 'Consulte saldos, cobertura mínima e itens que precisam de reposição.'
-            : 'Monitore lotes, validade e disponibilidade dos medicamentos da rede.'
+            ? 'Consulte os saldos exclusivos da sua unidade e identifique os itens que precisam de reposição.'
+            : unitName
+              ? 'Saldos exclusivos desta UBS. As quantidades armazenadas na CAF não estão incluídas.'
+              : 'Medicamentos armazenados na CAF e disponíveis para abastecer as unidades da rede.'
         }
         actions={
-          !local && (
+          !isUnitStock && (
             <Button>
               <PackagePlus />
               Registrar entrada
@@ -213,9 +223,16 @@ export function InventoryPage({
         }
       />
       <Card>
-        <CardHeader className="flex-col gap-3 border-b border-[#edf1f6] pb-5 sm:flex-row sm:items-center sm:justify-between">
+        <CardHeader className="flex flex-col gap-4 border-b border-[#edf1f6] pb-5 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <CardTitle className="text-[16px]">Posição de estoque</CardTitle>
+            <p className="mb-1 text-[11px] uppercase tracking-[0.12em] text-[#5d87ff]">
+              {isUnitStock ? 'Saldo da UBS' : 'Saldo da CAF'}
+            </p>
+            <CardTitle className="text-[16px]">
+              {isUnitStock
+                ? 'Posição do estoque da unidade'
+                : 'Posição do estoque central'}
+            </CardTitle>
             <p className="mt-1 text-[11px] text-[#7c8fac]">
               Atualizado hoje às 08:17
             </p>
@@ -223,9 +240,10 @@ export function InventoryPage({
           <div className="relative w-full sm:w-72">
             <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-[#9aa9bd]" />
             <Input
+              aria-label="Buscar medicamento"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              className="pl-9"
+              className="h-11 rounded-lg border-[#dbe4ee] bg-white pl-10 shadow-none hover:border-[#b8c8dc] focus-visible:border-[#8fa9ff]"
               placeholder="Buscar medicamento…"
             />
           </div>
@@ -241,10 +259,10 @@ export function InventoryPage({
               'Situação',
             ]}
             rows={visible.map((medicine) => {
-              const stock = local
+              const stock = isUnitStock
                 ? Math.max(12, Math.round(medicine.stock * 0.07))
                 : medicine.stock;
-              const min = local
+              const min = isUnitStock
                 ? Math.max(10, Math.round(medicine.min * 0.07))
                 : medicine.min;
               const percentage = Math.min(100, Math.round((stock / min) * 55));
