@@ -53,7 +53,7 @@ export default function UbsDashboard() {
       <div className="grid gap-5 xl:grid-cols-[minmax(0,1.7fr)_minmax(320px,.8fr)]">
         <DashboardHero
           eyebrow="UBS Dr. Fernando Couto"
-          title="Bom dia, Ana! Sua unidade está abastecida."
+          title="Bom dia! Sua unidade está abastecida."
           description="Revise os itens próximos do vencimento e acompanhe os pedidos enviados à Central de Abastecimento."
           metric="3.428 un."
           metricLabel="52 apresentações em estoque"

@@ -16,8 +16,7 @@ export const metadata: Metadata = {
   description:
     'Gestão integrada de estoque e abastecimento farmacêutico de Coelho Neto–MA.',
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ??
-      'https://caf-conecta-coelho-neto.maxcrowleyadz.chatgpt.site',
+    process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
   ),
   openGraph: {
     title: 'CAF Conecta',

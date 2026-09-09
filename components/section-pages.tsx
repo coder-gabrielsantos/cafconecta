@@ -331,9 +331,7 @@ export function MedicationsPage() {
         }
       />
       {feedback && (
-        <output
-          className="flex items-center gap-2 rounded-xl border border-[#bcefe4] bg-[#e8fbf7] p-3 text-sm font-semibold text-[#087b68]"
-        >
+        <output className="flex items-center gap-2 rounded-xl border border-[#bcefe4] bg-[#e8fbf7] p-3 text-sm font-semibold text-[#087b68]">
           <CheckCircle2 className="size-5" />
           {feedback}
         </output>
@@ -402,7 +400,7 @@ export function UnitsPage() {
                 Responsável:{' '}
                 {
                   [
-                    'Ana Beatriz Silva',
+                    '---',
                     'Marcos Almeida',
                     'Camila Rocha',
                     'Juliana Sousa',
@@ -465,9 +463,7 @@ export function ReportsPage() {
         }
       />
       {feedback && (
-        <output
-          className="rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm font-medium text-emerald-800"
-        >
+        <output className="rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm font-medium text-emerald-800">
           {feedback}
         </output>
       )}

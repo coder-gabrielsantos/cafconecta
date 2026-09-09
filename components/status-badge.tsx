@@ -1,29 +1,27 @@
-import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 
 const statusStyles: Record<string, string> = {
-  Pendente: 'border-amber-200 bg-amber-50 text-amber-800',
-  'Em análise': 'border-[#ccd9ff] bg-[#ecf2ff] text-[#4774ee]',
-  Aprovada: 'border-emerald-200 bg-emerald-50 text-emerald-800',
-  Parcial: 'border-orange-200 bg-orange-50 text-orange-800',
-  Recusada: 'border-red-200 bg-red-50 text-red-700',
-  Entregue: 'border-cyan-200 bg-cyan-50 text-cyan-800',
-  Recebida: 'border-emerald-200 bg-emerald-50 text-emerald-800',
-  Ativo: 'border-emerald-200 bg-emerald-50 text-emerald-800',
-  'Convite pendente': 'border-amber-200 bg-amber-50 text-amber-800',
+  Pendente: 'text-amber-700',
+  'Em análise': 'text-[#4774ee]',
+  Aprovada: 'text-emerald-700',
+  Parcial: 'text-orange-700',
+  Recusada: 'text-red-700',
+  Entregue: 'text-cyan-700',
+  Recebida: 'text-emerald-700',
+  Ativo: 'text-emerald-700',
+  'Convite pendente': 'text-amber-700',
 };
 
 export function StatusBadge({ status }: { status: string }) {
   return (
-    <Badge
-      variant="outline"
+    <span
       className={cn(
-        'gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold',
+        'inline-flex items-center gap-2 whitespace-nowrap text-[12px] font-medium',
         statusStyles[status],
       )}
     >
-      <span className="size-1.5 rounded-full bg-current opacity-70" />
+      <span className="size-1.5 rotate-45 bg-current opacity-75" />
       {status}
-    </Badge>
+    </span>
   );
 }

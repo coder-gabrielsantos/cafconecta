@@ -55,9 +55,7 @@ export default function ReceivingPage() {
         actions={<StatusBadge status="Entregue" />}
       />
       {feedback && (
-        <output
-          className="flex items-center gap-3 rounded-xl border border-[#bcefe4] bg-[#e8fbf7] px-4 py-3 text-sm font-semibold text-[#087b68]"
-        >
+        <output className="flex items-center gap-3 rounded-xl border border-[#bcefe4] bg-[#e8fbf7] px-4 py-3 text-sm font-semibold text-[#087b68]">
           <CheckCircle2 className="size-5" />
           {feedback}
         </output>
@@ -208,12 +206,12 @@ export default function ReceivingPage() {
               items={[
                 {
                   title: 'Solicitação enviada',
-                  detail: '18/08/2026 · Ana Beatriz',
+                  detail: '18/08/2026 · ---',
                   done: true,
                 },
                 {
                   title: 'Aprovada pela CAF',
-                  detail: '19/08/2026 · Helena Ribeiro',
+                  detail: '19/08/2026 · Guilherme',
                   done: true,
                 },
                 {

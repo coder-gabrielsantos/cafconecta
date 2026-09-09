@@ -15,20 +15,20 @@ import { cn } from '@/lib/utils';
 export const profileInfo = {
   ADMIN_CAF: {
     label: 'Administrador CAF',
-    person: 'Helena Ribeiro',
-    initials: 'HR',
+    person: 'Guilherme',
+    initials: 'GU',
     path: '/caf',
   },
   COORDENADOR_UBS: {
     label: 'Coord. UBS Fernando Couto',
-    person: 'Ana Beatriz',
-    initials: 'AB',
+    person: '---',
+    initials: '--',
     path: '/ubs',
   },
   ADMIN_SISTEMA: {
     label: 'Administrador do Sistema',
-    person: 'Gabriel Costa',
-    initials: 'GC',
+    person: 'Gabriel',
+    initials: 'GB',
     path: '/admin-sistema',
   },
 };

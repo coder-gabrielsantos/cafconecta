@@ -10,7 +10,6 @@ import {
   ClipboardClock,
   ClipboardList,
   FileBarChart,
-  HeartPulse,
   History,
   LayoutDashboard,
   Menu,
@@ -18,7 +17,6 @@ import {
   Pill,
   ScrollText,
   Search,
-  ShieldCheck,
   SlidersHorizontal,
   UserRoundCog,
   Users,
@@ -190,10 +188,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </div>
 
         <div className="ml-auto flex items-center gap-1.5 sm:gap-2">
-          <div className="mr-2 hidden items-center gap-2 rounded-full bg-[#e8fbf7] px-3 py-1.5 text-[11px] font-semibold text-[#069f84] xl:flex">
-            <span className="size-2 rounded-full bg-[#13deb9]" />
-            Rede sincronizada
-          </div>
           <Button
             variant="ghost"
             size="icon"
@@ -224,25 +218,22 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       >
         <div
           className={cn(
-            'flex h-[72px] shrink-0 items-center gap-3 px-5',
-            collapsed && 'md:justify-center md:px-3',
+            'relative flex h-[72px] shrink-0 items-center justify-center border-b border-[#edf1f6] px-12',
+            collapsed && 'md:px-2',
           )}
         >
-          <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-[#5d87ff] text-white shadow-[0_6px_16px_rgb(93_135_255/0.28)]">
-            <HeartPulse className="size-[22px]" strokeWidth={2.2} />
-          </span>
-          <div className={cn('min-w-0', collapsed && 'md:hidden')}>
-            <p className="truncate text-[18px] font-bold tracking-[-0.025em] text-[#2a3547]">
-              CAF Conecta
-            </p>
-            <p className="mt-0.5 text-[9px] font-bold uppercase tracking-[.15em] text-[#8b9bb3]">
-              Gestão farmacêutica
-            </p>
-          </div>
+          <p
+            className={cn(
+              'truncate text-center text-[20px] font-medium tracking-[-0.025em] text-[#2a3547]',
+              collapsed && 'md:hidden',
+            )}
+          >
+            CAF Conecta
+          </p>
           <Button
             variant="ghost"
             size="icon-sm"
-            className="ml-auto md:hidden"
+            className="absolute right-3 md:hidden"
             aria-label="Fechar menu"
             onClick={() => setMobileOpen(false)}
           >
@@ -302,25 +293,23 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </nav>
 
         <div className={cn('p-4 pt-2', collapsed && 'md:px-3')}>
-          <div
-            className={cn(
-              'rounded-xl bg-[#ecf2ff] p-4',
-              collapsed && 'md:grid md:h-12 md:place-items-center md:p-0',
-            )}
-          >
-            <div className="flex items-center gap-3">
-              <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-white text-[#5d87ff] shadow-sm">
-                <ShieldCheck className="size-[18px]" />
-              </span>
-              <div className={cn('min-w-0', collapsed && 'md:hidden')}>
-                <p className="text-xs font-bold text-[#2a3547]">
-                  Dados protegidos
-                </p>
-                <p className="mt-0.5 text-[10px] text-[#7c8fac]">
-                  Sincronizado às 10:32
-                </p>
-              </div>
-            </div>
+          <div className="border-t border-[#edf1f6] pt-4 text-center">
+            <p
+              className={cn(
+                'text-[12px] text-[#8b9bb3]',
+                collapsed && 'md:hidden',
+              )}
+            >
+              Versão 1.0.0
+            </p>
+            <p
+              className={cn(
+                'hidden text-[11px] text-[#8b9bb3]',
+                collapsed && 'md:block',
+              )}
+            >
+              v1.0
+            </p>
           </div>
         </div>
       </aside>
