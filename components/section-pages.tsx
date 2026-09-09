@@ -39,6 +39,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
+import { Switch } from '@/components/ui/switch';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 const requestStatusOptions = [
@@ -604,6 +605,124 @@ export function UsersPage() {
               user.created,
             ])}
           />
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+export function SystemLogsPage() {
+  return (
+    <div className="space-y-6">
+      <PageHeader
+        eyebrow="Monitoramento do sistema"
+        title="Logs técnicos"
+        description="Consulte eventos de acesso, sincronização e integridade da plataforma."
+      />
+      <Card>
+        <CardContent className="px-0">
+          <DataTable
+            headers={['Data e hora', 'Evento', 'Detalhes', 'Nível']}
+            rows={technicalLogs.map((log) => [
+              log.time,
+              <span key="event" className="text-[#2a3547]">
+                {log.event}
+              </span>,
+              log.detail,
+              log.level,
+            ])}
+          />
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+export function SystemSettingsPage() {
+  const [expiryDays, setExpiryDays] = useState(30);
+  const [minimumStock, setMinimumStock] = useState(20);
+  const [feedback, setFeedback] = useState('');
+
+  return (
+    <div className="space-y-6">
+      <PageHeader
+        eyebrow="Administração do sistema"
+        title="Configurações"
+        description="Defina regras globais para alertas e planejamento de estoque."
+      />
+      {feedback && (
+        <output className="flex items-center gap-2 rounded-lg border border-[#bcefe4] bg-[#e8fbf7] p-3 text-[14px] text-[#087b68]">
+          <CheckCircle2 className="size-5" />
+          {feedback}
+        </output>
+      )}
+      <Card className="max-w-4xl">
+        <CardHeader className="border-b border-[#edf1f6] pb-5">
+          <CardTitle className="text-[16px]">Parâmetros globais</CardTitle>
+          <p className="mt-1 text-[12px] text-[#7c8fac]">
+            Regras aplicadas em toda a rede
+          </p>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <div className="grid gap-5 sm:grid-cols-2">
+            <div className="space-y-2">
+              <Label htmlFor="expiry-days">Alerta de vencimento</Label>
+              <div className="flex items-center gap-2">
+                <Input
+                  id="expiry-days"
+                  type="number"
+                  value={expiryDays}
+                  onChange={(event) =>
+                    setExpiryDays(Number(event.target.value))
+                  }
+                />
+                <span className="text-[14px] text-[#7c8fac]">dias</span>
+              </div>
+              <p className="text-[12px] text-[#7c8fac]">
+                Antecedência para destacar lotes próximos da validade.
+              </p>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="min-stock">Estoque mínimo</Label>
+              <div className="flex items-center gap-2">
+                <Input
+                  id="min-stock"
+                  type="number"
+                  value={minimumStock}
+                  onChange={(event) =>
+                    setMinimumStock(Number(event.target.value))
+                  }
+                />
+                <span className="text-[14px] text-[#7c8fac]">%</span>
+              </div>
+              <p className="text-[12px] text-[#7c8fac]">
+                Cobertura mínima antes de considerar um item crítico.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center justify-between gap-4 border-t border-[#edf1f6] pt-5">
+            <div>
+              <p className="text-[14px] text-[#2a3547]">
+                Alertas por notificação
+              </p>
+              <p className="mt-1 text-[12px] text-[#7c8fac]">
+                Avisar administradores sobre falhas críticas.
+              </p>
+            </div>
+            <Switch
+              defaultChecked
+              aria-label="Ativar alertas por notificação"
+            />
+          </div>
+          <Button
+            onClick={() =>
+              setFeedback(
+                `Configurações salvas: vencimento em ${expiryDays} dias e estoque mínimo em ${minimumStock}%.`,
+              )
+            }
+          >
+            Salvar configurações
+          </Button>
         </CardContent>
       </Card>
     </div>
