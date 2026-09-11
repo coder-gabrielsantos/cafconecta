@@ -19,6 +19,7 @@
 # misc
 .DS_Store
 *.pem
+*.tsbuildinfo
 
 # debug
 npm-debug.log*
@@ -33,6 +34,7 @@ yarn-error.log*
 .vercel
 next-env.d.ts
 /dist/
+/.output/
 /.wrangler/
 /outputs/
 /work/

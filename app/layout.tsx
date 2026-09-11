@@ -11,13 +11,19 @@ const manrope = Manrope({
   display: 'swap',
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : 'http://localhost:3000');
+
 export const metadata: Metadata = {
   title: 'CAF Conecta | Gestão Farmacêutica Municipal',
   description:
     'Gestão integrada de estoque e abastecimento farmacêutico de Coelho Neto–MA.',
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
-  ),
+  metadataBase: new URL(siteUrl),
   openGraph: {
     title: 'CAF Conecta',
     description: 'Gestão farmacêutica municipal integrada',
